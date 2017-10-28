@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="counter_minions"></div>
+  <div id="minions_status"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://172.21.204.167:3000');
+      socket.on('saltJSON', function (saltJSON) {
+        //$("div:last").attr("id",saltJSON.minion_id);
+        document.getElementById("counter_minions").innerHTML = "LAB 401: " +saltJSON.counter_minions;
+        document.getElementById("minions_status").innerHTML =  saltJSON.minion_status;
+        $('div#minions_status').sort(function (a, b) {
+            var contentA = parseInt($(a).attr('data-sort'));
+            var contentB = parseInt($(b).attr('data-sort'));
+            return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+          })
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+var request = require('request');
+var http = require('http');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+var headers = {
+  'Content-Type':     'application/x-www-form-urlencoded'
+};
+
+var dataString = 'client=local&tgt=D159784&username=usjc&password=c0ck#U&fun=test.ping&eauth=pam';
+
+var options = {
+    url: 'https://172.20.23.6:8000/run',
+    method: 'POST',
+    headers: headers,
+    body: dataString
+};
+
+function callback(error, response, body) {
+  console.log(JSON.parse(body));
+    // if (!error && response.statusCode == 200) {
+    // }else {
+    //   console.log(error);
+    // }
+}
+
+request(options, callback);
