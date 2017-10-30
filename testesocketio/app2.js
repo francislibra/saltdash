@@ -78,7 +78,7 @@ io.on('connection', function(socket){
     execSalt(client, tgt, tgt_type, username, password, fun, eauth, guardarBody);
     var minion_id,minion_status = "";
     var obj, obj2;
-    for (obj in saltJSONarray) {
+    for (obj in saltJSONarray) { 
       for (obj2 in saltJSONarray[obj][0]){
         console.log(obj2+' : '+saltJSONarray[obj][0][obj2]);
         if (saltJSONarray[obj][0][obj2] == true){
