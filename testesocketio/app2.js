@@ -76,20 +76,21 @@ io.on('connection', function(socket){
   function tick() {
     var counter_minions = 0;
     execSalt(client, tgt, tgt_type, username, password, fun, eauth, guardarBody);
-    var minion_id,minion_status = "";
-    var obj, obj2;
-    for (obj in saltJSONarray) { 
-      for (obj2 in saltJSONarray[obj][0]){
-        console.log(obj2+' : '+saltJSONarray[obj][0][obj2]);
-        if (saltJSONarray[obj][0][obj2] == true){
-          minion_id = obj2;
-          // minion_status = saltJSONarray[obj][0][obj2];
-          counter_minions++;
-          minion_status += "<div data-sort='"+counter_minions+"'>"+minion_id + "<img src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ_as1m9c965EeP3OJ2k7Oy7n5HuuDs4bbAYCIb2--78GMXooA8ZQ'></div>";
-        }
-      }
-    }
-    socket.emit('saltJSON', { counter_minions:counter_minions, minion_id:minion_id, minion_status:minion_status });
+    // var minion_id,minion_status = "";
+    // var obj, obj2;
+    // for (obj in saltJSONarray) { 
+    //   for (obj2 in saltJSONarray[obj][0]){
+    //     console.log(obj2+' : '+saltJSONarray[obj][0][obj2]);
+    //     if (saltJSONarray[obj][0][obj2] == true){
+    //       minion_id = obj2;
+    //       // minion_status = saltJSONarray[obj][0][obj2];
+    //       counter_minions++;
+    //       minion_status += "<div data-sort='"+counter_minions+"'>"+minion_id + "<img src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ_as1m9c965EeP3OJ2k7Oy7n5HuuDs4bbAYCIb2--78GMXooA8ZQ'></div>";
+    //     }
+    //   }
+    // }
+    socket.emit('saltJSON', { minion_status:saltJSONarray });
+    // socket.emit('saltJSON', { counter_minions:counter_minions, minion_id:minion_id, minion_status:minion_status });
   }
   setInterval(tick, 3000);
 });
